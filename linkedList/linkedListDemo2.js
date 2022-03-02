@@ -160,6 +160,70 @@ class Node {
 
     }
 
+     // Delete a Node if value exists
+   // Delete a Node if value exists
+   deleteNodeWithValue(val){
+    if(this.head === null) return;
+    if(this.head.val === val){
+       this.head = this.head.next;
+       return;
+    }
+
+    let current = this.head;
+    while(current.next !== null){
+        if(current.next.val === val){
+          let start = current;
+          let end = current.next.next;
+          start.next = end;
+          return;
+        }
+        current = current.next;
+      }
+    }
+
+    // reverse linked list by convert to array first.
+  // Complexity: O(n) time, O(n) space. Uses more memory.
+  reverseLinkedListToArray(){
+      let reversed = new LList()
+      this.toArray().reverse().forEach(val => {
+          reversed.append(val);
+      })
+      return reversed;
   }
+
+  // Reverse Linked List
+  reverseLinkedList(){
+      let previos = null,
+      current = this.head,
+      next = current?.next || null;
+
+      while(current){
+          current.next = previos // point back to the last node
+          previos = current;
+          current = next;
+          next = next?.next || null
+      }
+
+      this.head = previous
+    return this
+  }
+
+  recursive(current){
+    if(current === null || current.next === null){
+        return current;
+    }
+
+    let newHead = this.recursive(current.next);
+     // Next node points BACK to current node as we go up recursive ladder. Reverses pointer.
+    current.next.next = current;
+    current.next = null;
+    return newHead;
+
+  }
+
+  }
+
+ 
+ module.exports = LList
 
   
