@@ -115,19 +115,26 @@ class Node {
     // insert node;
     insertNode(index, val){
         if (index >= this.size() || index < 0) {
-            return "Index out of bounds"
+            return null //"Index out of bounds"
           }
         let current = this.head;
         let count = 0;
+        let prev = null
 
         while(count < index){
+            prev = current;
             current = current.next;
             count++;
         }
 
+        if(count === 0){
+            this.prepend(val);
+            return 
+        }
+
         let newNode = new Node(val);
-        let nextNode = current.next;
-        current.next = newNode;
+        let nextNode = prev.next;
+        prev.next = newNode;
         newNode.next = nextNode;
         return this;
     }
@@ -193,19 +200,20 @@ class Node {
 
   // Reverse Linked List
   reverseLinkedList(){
-      let previos = null,
-      current = this.head,
-      next = current?.next || null;
+     // Step 1
+        let previous = null,
+        current = this.head,
+        following = this.head
 
-      while(current){
-          current.next = previos // point back to the last node
-          previos = current;
-          current = next;
-          next = next?.next || null
-      }
+        // Step 2
+        while (current !== null){
+        following = following.next;
+        current.next = previous;
+        previous = current;
+        current = following;
+        }
 
-      this.head = previous
-    return this
+        return previous;
   }
 
   recursive(current){
