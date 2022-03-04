@@ -164,7 +164,7 @@ class Node {
      // Delete a Node if value exists
    // Delete a Node if value exists
    deleteNodeWithValue(val){
-    if(this.head === null) return;
+    if(this.head === null) return null
     if(this.head.val === val){
        this.head = this.head.next;
        return;
@@ -176,15 +176,16 @@ class Node {
           let start = current;
           let end = current.next.next;
           start.next = end;
-          return;
+          return this;
         }
         current = current.next;
       }
+      return null
     }
 
     // reverse linked list by convert to array first.
   // Complexity: O(n) time, O(n) space. Uses more memory.
-  reverseLinkedListToArray(){
+  reverseLinkedListArray(){
       let reversed = new LList()
       this.toArray().reverse().forEach(val => {
           reversed.append(val);
@@ -195,6 +196,9 @@ class Node {
   // Reverse Linked List
   reverseLinkedList(){
      // Step 1
+     if(this.head === null){
+         return this;
+     }
         let previous = null,
         current = this.head,
         following = this.head

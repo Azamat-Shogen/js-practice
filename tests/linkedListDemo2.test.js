@@ -47,6 +47,8 @@ describe("Linked List function tests", () => {
     })
 
     it("prints linked list as array", () => {
+        const t = new LList()
+        expect(t.toArray()).toEqual([])
         expect(list1.toArray()).toEqual(["a", "b"])
     })
 
@@ -82,5 +84,23 @@ describe("Linked List function tests", () => {
         expect(list1.deleteAtIndex(0).toArray()).toEqual(["b"])
         expect(list1.prepend("a").deleteAtIndex(1).toArray()).toEqual(["a"])
         expect(list1.deleteAtIndex(0).toArray()).toEqual([])
+    })
+
+    it("deletes fist node with certain value", () => {
+        expect(list1.deleteNodeWithValue("d")).toBe(null)
+        expect(list1.prepend("z").deleteNodeWithValue("a").toArray()).toEqual(["z", "b"])
+        expect(list1.deleteNodeWithValue("b").toArray()).toEqual(["z"])
+    })
+
+    it("reverses linked list after firsts converting to array", () => {
+        expect(list1.reverseLinkedListArray().toArray()).toEqual(["b", "a"])
+        expect(list1.append("z").toArray()).toEqual(["a", "b", "z"])
+        expect(list1.reverseLinkedListArray().toArray()).toEqual(["z", "b", "a"])
+    })
+
+    it("iteratively reverse linked list in place", () => {
+        const list5 = new LList()
+        expect(list5.size()).toBe(0)
+        expect(list5.reverseLinkedList().toArray()).toEqual([])
     })
 })
