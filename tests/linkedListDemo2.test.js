@@ -72,8 +72,15 @@ describe("Linked List function tests", () => {
         expect(list1.insertNode(2, "z")).toBe(null)
         expect(list1.insertNode(5, "z")).toBe(null)
         expect(list1.toArray()).toEqual(["a", "b"])
-        expect(list1.insertNode(1, "z").toArray()).toEqual(["a", "z", "b"])
-        // the below test doesnt pass for some reason even though it outputs the correct result in a console
-       // expect(list1.insertNode(0, "z").toArray()).toEqual(["z", "a", "b"])
+        expect(list1.insertNode(0, "k").toArray()).toEqual(["a", "k", "b"])
+        expect(list1.insertNode(1, "j").toArray()).toEqual(["a", "k", "j", "b"])
+    })
+
+    it("deletes node at index", () => {
+        expect(list1.deleteAtIndex(6)).toBe(null)
+        expect(list1.size()).toBe(2)
+        expect(list1.deleteAtIndex(0).toArray()).toEqual(["b"])
+        expect(list1.prepend("a").deleteAtIndex(1).toArray()).toEqual(["a"])
+        expect(list1.deleteAtIndex(0).toArray()).toEqual([])
     })
 })

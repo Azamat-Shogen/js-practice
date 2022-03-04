@@ -119,33 +119,27 @@ class Node {
           }
         let current = this.head;
         let count = 0;
-        let prev = null
+     
 
         while(count < index){
-            prev = current;
             current = current.next;
             count++;
         }
 
-        if(count === 0){
-            this.prepend(val);
-            return 
-        }
-
         let newNode = new Node(val);
-        let nextNode = prev.next;
-        prev.next = newNode;
+        let nextNode = current.next;
+        current.next = newNode;
         newNode.next = nextNode;
         return this;
     }
 
     deleteAtIndex(index){
         if (index >= this.size() || index < 0) {
-            return "Index out of bounds"
+            return null // "Index out of bounds"
           }
 
         let current = this.head,
-        count = 0
+        count = 0,
         previos;
 
         if(index === 0){
