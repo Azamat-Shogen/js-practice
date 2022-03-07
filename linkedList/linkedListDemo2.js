@@ -31,7 +31,7 @@ class Node {
     append(val){
         if (this.head === null){
             this.head = new Node(val);
-            return;
+            return this;
         }
 
         let current = this.head;
@@ -196,7 +196,7 @@ class Node {
   // Reverse Linked List
   reverseLinkedList(){
      // Step 1
-     if(this.head === null){
+     if(this.head === null || this.head.next === null){
          return this;
      }
         let previous = null,
@@ -218,15 +218,28 @@ class Node {
     if(current === null || current.next === null){
         return current;
     }
-
-    let newHead = this.recursive(current.next);
-     // Next node points BACK to current node as we go up recursive ladder. Reverses pointer.
-    current.next.next = current;
+   
+    let nextNode = currrent.next;
     current.next = null;
-    return newHead;
+    let rest = this.recursive(nextNode);
+     // Next node points BACK to current node as we go up recursive ladder. Reverses pointer.
+    nextNode.next = current;
+    return rest;
 
   }
 
+//   recursive(current){
+//     if(current === null || current.next === null){
+//         return current;
+//     }
+
+//     let newHead = this.recursive(current.next);
+//      // Next node points BACK to current node as we go up recursive ladder. Reverses pointer.
+//     current.next.next = current;
+//     current.next = null;
+//     return newHead;
+
+//   }
   }
 
  

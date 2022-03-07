@@ -99,8 +99,13 @@ describe("Linked List function tests", () => {
     })
 
     it("iteratively reverse linked list in place", () => {
-        const list5 = new LList()
+        let list5 = new LList()
         expect(list5.size()).toBe(0)
         expect(list5.reverseLinkedList().toArray()).toEqual([])
+        expect(list5.append("a").toArray()).toEqual(["a"])
+        expect(list5.size()).toBe(1)
+        expect(list5.reverseLinkedList().toArray()).toEqual(["a"])
+        // expect(list5.reverseLinkedList().toArray()).toEqual(["a"])
+        // expect(list5.append("b").reverseLinkedList().toArray()).toEqual(["b", "a"])
     })
 })
