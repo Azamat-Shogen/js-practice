@@ -210,25 +210,32 @@ class Node {
         previous = current;
         current = following;
         }
+        this.head = previous
 
-        return previous;
+        return this;
   }
 
-  recursive(current){
+  recursive(){
+    this.head = this.recursive_reverse(this.head);
+    return this
+}
+
+  recursive_reverse(current){
     if(current === null || current.next === null){
         return current;
     }
    
-    let nextNode = currrent.next;
+    let nextNode = current.next;
     current.next = null;
-    let rest = this.recursive(nextNode);
+    let rest = this.recursive_reverse(nextNode);
      // Next node points BACK to current node as we go up recursive ladder. Reverses pointer.
     nextNode.next = current;
     return rest;
 
   }
 
-//   recursive(current){
+
+//   recursive_reverse(current){
 //     if(current === null || current.next === null){
 //         return current;
 //     }
@@ -240,6 +247,8 @@ class Node {
 //     return newHead;
 
 //   }
+
+
   }
 
  
